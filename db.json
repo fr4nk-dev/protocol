@@ -1,150 +1,154 @@
 {
-  "id": "cancino",
-  "protocol": "CS-CTP-AD-5NCOV-III",
-  "groups": [
+  "protocols": [
     {
-      "id": "G1",
-      "title": "TEMPERATURA Y REACCIONES",
-      "sections": [
+      "id": "cancino",
+      "protocol": "CS-CTP-AD-5NCOV-III",
+      "groups": [
         {
-          "id": "S1",
-          "title": "TEMPERATURA",
-          "questions": [
+          "id": "G1",
+          "title": "TEMPERATURA Y REACCIONES",
+          "sections": [
             {
-              "id": "1",
-              "orden": 1,
-              "visible": true,
-              "prefix": null,
-              "type": "number",
-              "title": "Registre su temperatura oral",
-              "instructions": [
-                "Por favor tómese la temperatura oral con el termómetro proporcionado",
-                "Preferentemente tómese la temperatura por la noche a la misma hora cada día, y en cualquier momento que sienta que tiene fiebre. Registre la temperatura máxima diaria"
-              ],
-              "footnote": "*Un mensaje importante",
-              "rules": [
+              "id": "S1",
+              "title": "TEMPERATURA",
+              "questions": [
                 {
-                  "condition": ">38",
-                  "action": "next(S1,2)"
+                  "id": "1",
+                  "orden": 1,
+                  "visible": true,
+                  "prefix": null,
+                  "type": "number",
+                  "title": "Registre su temperatura oral",
+                  "instructions": [
+                    "Por favor tómese la temperatura oral con el termómetro proporcionado",
+                    "Preferentemente tómese la temperatura por la noche a la misma hora cada día, y en cualquier momento que sienta que tiene fiebre. Registre la temperatura máxima diaria"
+                  ],
+                  "footnote": "*Un mensaje importante",
+                  "rules": [
+                    {
+                      "condition": ">38",
+                      "action": "next(S1,2)"
+                    }
+                  ]
+                },
+                {
+                  "id": "2",
+                  "orden": 2,
+                  "visible": "eval(S1,1) > 38",
+                  "type": "single",
+                  "title": "¿Sigue el sintoma despues del día 7?",
+                  "footnote": "Fiebre > 38",
+                  "options": [
+                    { "SI": 1 },
+                    { "NO": 0 },
+                    { "N/A": null }
+                  ],
+                  "rules": [
+                    {
+                      "condition": "eval(S1,1) > 38",
+                      "action": "visible"
+                    }
+                  ]
+                },
+                {
+                  "id": "3",
+                  "orden": 3,
+                  "visible": "eval(A,1) > 38",
+                  "type": "range",
+                  "title": "Registar el horario del sintoma",
+                  "footnote": "Fiebre > 39"
+                },
+                {
+                  "id": "4",
+                  "orden": 4,
+                  "visible": "eval(S1,1) > 38",
+                  "type": "single",
+                  "title": "Vio a un profesional de la salud para tratar su sintoma",
+                  "options": [
+                    { "Visita Medica": 1 },
+                    { "Visita a centro de urgencias": 2 },
+                    { "Hospital": 3 },
+                    { "NO": 0 }
+                  ]
                 }
               ]
             },
             {
-              "id": "2",
-              "orden": 2,
-              "visible": "eval(S1,1) > 38",
-              "type": "single",
-              "title": "¿Sigue el sintoma despues del día 7?",
-              "footnote": "Fiebre > 38",
-              "options": [
-                { "SI": 1 },
-                { "NO": 0 },
-                { "N/A": null }
-              ],
-              "rules": [
+              "id": "S2",
+              "title": "Reacciones en el lugar de la inyección",
+              "questions": [
                 {
-                  "condition": "eval(S1,1) > 38",
-                  "action": "visible"
+                  "id": "1",
+                  "orden": 1,
+                  "visible": true,
+                  "prefix": null,
+                  "type": "number",
+                  "title": "Enrojecimiento",
+                  "subtitle": "Mida el mas grande",
+                  "instructions": [
+                    "Por favor tómese la temperatura oral con el termómetro proporcionado",
+                    "Preferentemente tómese la temperatura por la noche a la misma hora cada día, y en cualquier momento que sienta que tiene fiebre. Registre la temperatura máxima diaria"
+                  ],
+                  "footnote": "*Un mensaje importante",
+                  "rules": [
+                    {
+                      "condition": ">20",
+                      "action": "next(a,2)"
+                    }
+                  ]
+                },
+                {
+                  "id": "2",
+                  "orden": 2,
+                  "visible": "eval(A,1) > 38",
+                  "type": "single",
+                  "title": "¿Sigue el sintoma despues del día 7?",
+                  "footnote": "Hinchazon > 38",
+                  "options": [
+                    { "SI": 1 },
+                    { "NO": 0 },
+                    { "N/A": null }
+                  ],
+                  "rules": [
+                    {
+                      "condition": "eval(A,1) > 38",
+                      "action": "visible"
+                    }
+                  ]
+                },
+                {
+                  "id": "3",
+                  "orden": 3,
+                  "visible": "eval(A,1) > 38",
+                  "type": "range",
+                  "title": "Registar el horario del sintoma",
+                  "footnote": "Hinchazon > 39"
+                },
+                {
+                  "id": "4",
+                  "orden": 4,
+                  "visible": "eval(A,1) > 38",
+                  "type": "single",
+                  "title": "Vio a un profesional de la salud para tratar su sintoma",
+                  "options": [
+                    { "Visita Medica": 1 },
+                    { "Visita a centro de urgencias": 2 },
+                    { "Hospital": 3 },
+                    { "NO": 0 }
+                  ]
                 }
-              ]
-            },
-            {
-              "id": "3",
-              "orden": 3,
-              "visible": "eval(A,1) > 38",
-              "type": "range",
-              "title": "Registar el horario del sintoma",
-              "footnote": "Fiebre > 39"
-            },
-            {
-              "id": "4",
-              "orden": 4,
-              "visible": "eval(S1,1) > 38",
-              "type": "single",
-              "title": "Vio a un profesional de la salud para tratar su sintoma",
-              "options": [
-                { "Visita Medica": 1 },
-                { "Visita a centro de urgencias": 2 },
-                { "Hospital": 3 },
-                { "NO": 0 }
               ]
             }
           ]
         },
         {
-          "id": "S2",
-          "title": "Reacciones en el lugar de la inyección",
-          "questions": [
+          "id": "G2",
+          "title": "SINTOMAS GENERALES",
+          "sections": [
             {
-              "id": "1",
-              "orden": 1,
-              "visible": true,
-              "prefix": null,
-              "type": "number",
-              "title": "Enrojecimiento",
-              "subtitle": "Mida el mas grande",
-              "instructions": [
-                "Por favor tómese la temperatura oral con el termómetro proporcionado",
-                "Preferentemente tómese la temperatura por la noche a la misma hora cada día, y en cualquier momento que sienta que tiene fiebre. Registre la temperatura máxima diaria"
-              ],
-              "footnote": "*Un mensaje importante",
-              "rules": [
-                {
-                  "condition": ">20",
-                  "action": "next(a,2)"
-                }
-              ]
-            },
-            {
-              "id": "2",
-              "orden": 2,
-              "visible": "eval(A,1) > 38",
-              "type": "single",
-              "title": "¿Sigue el sintoma despues del día 7?",
-              "footnote": "Hinchazon > 38",
-              "options": [
-                { "SI": 1 },
-                { "NO": 0 },
-                { "N/A": null }
-              ],
-              "rules": [
-                {
-                  "condition": "eval(A,1) > 38",
-                  "action": "visible"
-                }
-              ]
-            },
-            {
-              "id": "3",
-              "orden": 3,
-              "visible": "eval(A,1) > 38",
-              "type": "range",
-              "title": "Registar el horario del sintoma",
-              "footnote": "Hinchazon > 39"
-            },
-            {
-              "id": "4",
-              "orden": 4,
-              "visible": "eval(A,1) > 38",
-              "type": "single",
-              "title": "Vio a un profesional de la salud para tratar su sintoma",
-              "options": [
-                { "Visita Medica": 1 },
-                { "Visita a centro de urgencias": 2 },
-                { "Hospital": 3 },
-                { "NO": 0 }
-              ]
+              "id": "S1"
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "G2",
-      "title": "SINTOMAS GENERALES",
-      "sections": [
-        {
-          "id": "S1"
         }
       ]
     }
